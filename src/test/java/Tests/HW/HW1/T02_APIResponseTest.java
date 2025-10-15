@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import static org.hamcrest.Matchers.*;
 
-public class T02_ApiTest {
+public class T02_APIResponseTest {
     @Test
     void validateApiResponse() {
 
