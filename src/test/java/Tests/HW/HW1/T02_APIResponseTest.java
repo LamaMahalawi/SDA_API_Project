@@ -17,7 +17,6 @@ public class T02_APIResponseTest {
         System.out.println("------------ API Response ------------");
         System.out.println("- Status Code: " + response.statusCode());
         System.out.println("- Content Type: " + response.contentType());
-        System.out.println("- Status Line: " + response.statusLine());
         System.out.println("--------------------------------------");
 
        //2. Validate response status code
@@ -31,6 +30,11 @@ public class T02_APIResponseTest {
         //4. Verify server information
         response.then().assertThat().header("Server", containsString("Kestrel"));
         System.out.println("Server header contains 'Kestrel'");
+
+        //5. Validate Transfer-Encoding header is "chunked"
+        response.then().assertThat().header("Transfer-Encoding", equalTo("chunked"));
+        System.out.println("Transfer-Encoding is 'chunked'");
+
 
         System.out.println("All validations passed successfully!");
     }
