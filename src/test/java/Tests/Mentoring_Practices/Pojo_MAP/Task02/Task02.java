@@ -1,48 +1,72 @@
 package Tests.Mentoring_Practices.Pojo_MAP.Task02;
 
+import Base_URL.PetStoreBaseUrl;
 import io.restassured.response.Response;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import java.util.HashMap;
+import java.util.Map;
 import Tests.Mentoring_Practices.Pojo_MAP.Task02.UserPojo;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.hasKey;
 
-public class Task02  extends PetStoreBaseUrl  {
+public class Task02  extends PetStoreBaseUrl {
     @Test
-    void createUserTest() {
+    public void createUserTest() {
+        Integer id = 43;
 
-        // 1️⃣ إعداد البيانات (Expected Data)
+        // Endpoint
+        spec.pathParam("first", "user");
+
+        // Expected (Map)
+        Map<String, Object> expectedMap = new HashMap<>();
+        expectedMap.put("code", 200);
+        expectedMap.put("type", "unknown");
+        expectedMap.put("message", id.toString());
+
+        // Expected (Pojo)
+        SuccessfulUserCreationPojo expectedPojo =
+                new SuccessfulUserCreationPojo(200, "unknown", id.toString());
+
+        // Payload
         UserPojo payload = new UserPojo(
-                1234,
-                "LuluTest",
-                "Lulu",
-                "Tester",
-                "lulu@example.com",
-                "Lulu@123",
-                "0551234567",
-                1
+                id,
+                "TomHanks",
+                "Tom",
+                "Hanks",
+                "string@email.com",
+                "string123",
+                "500000000",
+                0
         );
 
-        System.out.println("Payload Data → " + payload);
-
-        // 2️⃣ إرسال الطلب
+        // Send request
         Response response = given(spec)
                 .body(payload)
                 .when()
-                .post("/user");
+                .post("{first}");
 
         System.out.println("------------- API Response -------------");
         response.prettyPrint();
         System.out.println("----------------------------------------");
 
-        // 3️⃣ التحقق من النتائج
-        response
-                .then()
+        // Hamcrest checks
+        response.then()
                 .statusCode(200)
                 .body("$", hasKey("code"))
+                .body("$", hasKey("type"))
                 .body("$", hasKey("message"));
 
-        // 4️⃣ طباعة النتيجة النهائية
-        System.out.println("✅ Test Passed: User created successfully!");
+        // Assert with Map
+        Map<String, Object> actualMap = response.as(Map.class);
+        Assert.assertEquals(actualMap.get("code"), expectedMap.get("code"));
+        Assert.assertEquals(actualMap.get("type"), expectedMap.get("type"));
+        Assert.assertEquals(actualMap.get("message"), expectedMap.get("message"));
+
+        // Assert with Pojo
+        SuccessfulUserCreationPojo actualPojo = response.as(SuccessfulUserCreationPojo.class);
+        Assert.assertEquals(actualPojo.getCode(), expectedPojo.getCode());
+        Assert.assertEquals(actualPojo.getType(), expectedPojo.getType());
+        Assert.assertEquals(actualPojo.getMessage(), expectedPojo.getMessage());
     }
 }
-

@@ -1,19 +1,18 @@
-package Tests.Mentoring_Practices.Pojo_MAP.Task02;
+package Tests.Mentoring_Practices.Pojo_MAP.Task03;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeMethod;
 
-public class PetStoreBaseUrl {
+public class FakeRestBaseUrl {
     protected RequestSpecification spec;
 
     @BeforeMethod
     public void setSpec() {
         spec = new RequestSpecBuilder()
-                .setBaseUri("https://petstore.swagger.io/v2")
+                .setBaseUri("https://fakerestapi.azurewebsites.net/api/v1")
                 .setContentType(ContentType.JSON)
                 .build();
     }
-
 }

@@ -8,7 +8,7 @@ import pojos.CLUserPojo;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class C22_CreateUserCL extends CLBaseUrl {
+public class C22_CreateUserPojoCL extends CLBaseUrl {
     //By using the document create a user.
     //https://documenter.getpostman.com/view/4012288/TzK2bEa8
 

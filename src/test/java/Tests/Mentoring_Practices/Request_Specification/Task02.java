@@ -38,7 +38,7 @@ public class Task02 extends JPHBaseUrl {
 
         // 3) Print userIds with ids < 5 (4 total)
         List<Integer> userIdList = jsonPath.getList("findAll{it.id < 5}.userId");
-        System.out.println("User IDs where id < 5 -> " + userIdList);
+        System.out.println("UserPojo IDs where id < 5 -> " + userIdList);
         System.out.println("Total count = " + userIdList.size());
         System.out.println("----------------------------------------");
 

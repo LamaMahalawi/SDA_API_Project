@@ -11,7 +11,7 @@ import Base_URL.BookersBaseURL;
 public class C08_RequestSpecification extends BookersBaseURL {
 /*
         Given https://restful-booker.herokuapp.com/booking
-        When User sends get request to the URL
+        When UserPojo sends get request to the URL
         Then Status code is 200
         And Among the data there should be someone whose firstname is "Jane" and lastname is "Doe"
     */

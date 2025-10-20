@@ -10,7 +10,7 @@ public class C02_Assertion {
      Given
          https://restful-booker.herokuapp.com/booking
      When
-         User sends a GET request to the URL
+         UserPojo sends a GET request to the URL
      Then
          HTTP Status Code should be 200
      And

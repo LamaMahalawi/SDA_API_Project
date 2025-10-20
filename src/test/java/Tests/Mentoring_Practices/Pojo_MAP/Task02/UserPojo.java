@@ -10,12 +10,10 @@ public class UserPojo {
     private String phone;
     private Integer userStatus;
 
-    // Default Constructor (ضروري لـ Deserialization)
-    public UserPojo() {
-    }
+    public UserPojo() {}
 
-    // Parameterized Constructor (لإنشاء البيانات)
-    public UserPojo(Integer id, String username, String firstName, String lastName, String email, String password, String phone, Integer userStatus) {
+    public UserPojo(Integer id, String username, String firstName, String lastName,
+                    String email, String password, String phone, Integer userStatus) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
@@ -26,7 +24,6 @@ public class UserPojo {
         this.userStatus = userStatus;
     }
 
-    // Getters & Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
@@ -53,7 +50,7 @@ public class UserPojo {
 
     @Override
     public String toString() {
-        return "UserPojo{" +
+        return "{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", firstName='" + firstName + '\'' +
