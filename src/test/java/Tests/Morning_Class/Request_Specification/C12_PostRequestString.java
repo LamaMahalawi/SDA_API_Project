@@ -1,9 +1,8 @@
-package Tests.Morning_Class;
+package Tests.Morning_Class.Request_Specification;
 
 import Base_URL.JPHBaseUrl;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;

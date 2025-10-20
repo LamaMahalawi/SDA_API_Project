@@ -1,4 +1,4 @@
-package Tests.Morning_Class;
+package Tests.Morning_Class.Request_Specification;
 
 import org.testng.annotations.Test;
 import io.restassured.RestAssured;

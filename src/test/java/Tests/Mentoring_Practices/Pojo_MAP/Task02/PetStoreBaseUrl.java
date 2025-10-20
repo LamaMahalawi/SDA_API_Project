@@ -1,21 +1,19 @@
-package Base_URL;
+package Tests.Mentoring_Practices.Pojo_MAP.Task02;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeMethod;
 
-public class BookersBaseURL {
-
+public class PetStoreBaseUrl {
     protected RequestSpecification spec;
 
-    @BeforeMethod//Before each test method, this will work and initialize the spec object.
+    @BeforeMethod
     public void setSpec() {
         spec = new RequestSpecBuilder()
-                .setBaseUri("https://restful-booker.herokuapp.com")
+                .setBaseUri("https://petstore.swagger.io/v2")
                 .setContentType(ContentType.JSON)
                 .build();
     }
-
 
 }

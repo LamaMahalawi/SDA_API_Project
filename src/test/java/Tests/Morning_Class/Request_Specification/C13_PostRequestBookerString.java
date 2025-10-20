@@ -1,7 +1,6 @@
-package Tests.Morning_Class;
+package Tests.Morning_Class.Request_Specification;
 
 import Base_URL.BookersBaseURL;
-import Base_URL.BookStoreBaseUrl;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;

@@ -1,4 +1,4 @@
-package Tests.Morning_Class;
+package Tests.Morning_Class.Request_Specification;
 
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
