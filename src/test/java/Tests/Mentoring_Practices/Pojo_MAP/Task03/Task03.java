@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
-public class PetPojo extends FakeRestBaseUrl  {
+public class Task03 extends FakeRestBaseUrl  {
 
     @Test
     void crudActivitiesTest() {
