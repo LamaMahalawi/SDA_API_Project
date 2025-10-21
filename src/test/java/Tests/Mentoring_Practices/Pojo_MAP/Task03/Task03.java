@@ -1,69 +1,79 @@
 package Tests.Mentoring_Practices.Pojo_MAP.Task03;
 
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import Tests.Mentoring_Practices.Pojo_MAP.Task03.ActivityPojo;
-import Tests.Mentoring_Practices.Pojo_MAP.Task03.FakeRestBaseUrl;
-
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import static io.restassured.RestAssured.given;
+import static org.testng.Assert.assertEquals;
 
-public class Task03 extends FakeRestBaseUrl{
+public class Task03 extends FakeRestBaseUrl  {
 
     @Test
-    public void crudActivitiesTest() {
+    void crudActivitiesTest() {
 
-        // Implement CREATE (POST) - Add new activity
-        ActivityPojo newActivity = new ActivityPojo(2003, "Learn API Testing", "2025-12-31T00:00:00Z", true);
+       // Implement CREATE (POST) - Add new activity
+        System.out.println("--------------CREATE--------------");
+        String dueDate = ZonedDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+        ActivityPojo expectedData = new ActivityPojo(1, "Activity 1", dueDate , false);
 
-        Response postResponse = given(spec)
-                .body(newActivity)
-                .when()
-                .post("/Activities");
 
-        System.out.println("---------- CREATE ----------");
+        // Send POST request
+        Response postResponse = given(spec).body(expectedData).post("/Activities");
         postResponse.prettyPrint();
-        Assert.assertEquals(postResponse.statusCode(), 200);
-        System.out.println("Created (POST) successfully");
 
+        // Assert
+        assertEquals(postResponse.statusCode(), 200);
+        ActivityPojo actualPostData = postResponse.as(ActivityPojo.class);
+        assertEquals(actualPostData.getTitle(), expectedData.getTitle());
+        assertEquals(actualPostData.getCompleted(), expectedData.getCompleted());
+        System.out.println("CREATE operation successful");
+
+        Integer id = actualPostData.getId(); // Store ID for later use
+        System.out.println("Created ID = " + id);
 
         // Implement READ (GET) - Retrieve activity details
-        Response getResponse = given(spec)
-                .when()
-                .get("/Activities/10");
-
-
-        System.out.println("---------- READ ----------");
+        System.out.println("--------------READ--------------");
+        Response getResponse = given(spec).get("/Activities/" + id);
         getResponse.prettyPrint();
-        Assert.assertEquals(getResponse.statusCode(), 200);
-        ActivityPojo actualGet = getResponse.as(ActivityPojo.class);
-        Assert.assertEquals(actualGet.getId(), 10);
-        System.out.println("Read (GET) successfully");
+
+        // Assert
+        assertEquals(getResponse.statusCode(), 200);
+        ActivityPojo actualGetData = getResponse.as(ActivityPojo.class);
+        assertEquals(actualGetData.getTitle(), expectedData.getTitle());
+        assertEquals(actualGetData.getCompleted(), expectedData.getCompleted());
+        System.out.println("READ operation successful");
 
 
         // Implement UPDATE (PUT) - Modify existing activity
-        ActivityPojo updatedActivity = new ActivityPojo(10, "Updated Title", "2025-12-31T00:00:00Z", false);
+        System.out.println("--------------UPDATE--------------");
+        String currentDate = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+        ActivityPojo updatedActivity = new ActivityPojo(1, "Updated Activity Title", currentDate, true);
 
-        Response putResponse = given(spec)
-                .body(updatedActivity)
-                .when()
-                .put("/Activities/10");
-
-
-        System.out.println("---------- UPDATE ----------");
+        // Send PUT request
+        Response putResponse = RestAssured.given(spec).body(updatedActivity).put("/Activities/"+ updatedActivity.getId());
         putResponse.prettyPrint();
-        Assert.assertEquals(putResponse.statusCode(), 200);
-        System.out.println("Updated (PUT) successfully");
+
+        // Assert
+        ActivityPojo responseBody = putResponse.as(ActivityPojo.class);
+        assertEquals(putResponse.statusCode(), 200);
+        assertEquals(responseBody.getId(), updatedActivity.getId());
+        assertEquals(responseBody.getTitle(), updatedActivity.getTitle());
+        assertEquals(responseBody.getCompleted(), updatedActivity.getCompleted());
+        System.out.println("UPDATE operation successful");
+
 
 
         // Implement DELETE - Remove activity
-        Response deleteResponse = given(spec)
-                .when()
-                .delete("/Activities/10");
-
-        System.out.println("---------- DELETE ----------");
+        System.out.println("--------------DELETE--------------");
+        Response deleteResponse = given(spec).delete("/Activities/" + id);
         deleteResponse.prettyPrint();
-        Assert.assertEquals(deleteResponse.statusCode(), 200);
-        System.out.println("Deleted successfully");
+        assertEquals(deleteResponse.statusCode(), 200);
+        System.out.println("DELETE operation successful");
+
+
     }
 }

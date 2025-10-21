@@ -31,8 +31,8 @@ public class ActivityPojo {
     public String toString() {
         return "ActivityPojo{" +
                 "id=" + id +
-                ", title='" + title +
-                ", dueDate='" + dueDate +
+                ", title='" + title + '\'' +
+                ", dueDate='" + dueDate + '\'' +
                 ", completed=" + completed +
                 '}';
     }
