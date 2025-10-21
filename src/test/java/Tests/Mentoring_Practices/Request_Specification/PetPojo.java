@@ -9,7 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.util.List;
 
-public class Task03 extends BookersBaseURL {
+public class PetPojo extends BookersBaseURL {
 
     @Test
     void getEmployeesTest() {
