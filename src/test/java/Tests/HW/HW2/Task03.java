@@ -16,13 +16,13 @@ public class Task03 extends FakeStoreBaseUrl {
     @Test
     void createCartTest() {
 
-        //products (array of product objects with productId and quantity
+        // products (array of product objects with productId and quantity
         JsonNode payload = ObjectMapperUtils.getJsonNode("cart"); //(from test_data folder)
         System.out.println("Original Payload: " + payload.toPrettyString());
         System.out.println("----------------------------------------");
 
         // Modify the JsonNode to add additional fields as needed
-        updateJsonNode(payload, "userId", 7);
+        updateJsonNode(payload, "userId", 9);
         updateJsonNode(payload, "date", "2025-10-21");
         System.out.println("Updated Payload: " + payload.toPrettyString());
 
