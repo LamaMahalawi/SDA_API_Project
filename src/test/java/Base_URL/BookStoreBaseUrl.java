@@ -12,6 +12,8 @@ public class BookStoreBaseUrl {
         spec = new RequestSpecBuilder()
                 .setBaseUri("https://bookstore.demoqa.com")
                 .build();
+
+
     }
 
 }
