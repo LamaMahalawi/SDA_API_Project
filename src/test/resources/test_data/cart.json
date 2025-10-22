@@ -3,7 +3,7 @@
   "userId": 3,
   "date": "2003-01-08",
   "products": [
-    { "productId": 5, "quantity": 1 },
+    { "productId": 5, "quantity": 2 },
     { "productId": 1, "quantity": 5 },
     { "productId": 2, "quantity": 3 }
     ]

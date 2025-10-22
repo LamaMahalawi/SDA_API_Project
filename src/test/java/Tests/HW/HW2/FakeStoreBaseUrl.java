@@ -9,7 +9,7 @@ public class FakeStoreBaseUrl {
     protected RequestSpecification spec;
 
     @BeforeMethod
-    public void setSpec() {
+    public void setSpec(){
         spec =  new RequestSpecBuilder()
                 .setBaseUri("https://fakestoreapi.com")
                 .setContentType(ContentType.JSON)
