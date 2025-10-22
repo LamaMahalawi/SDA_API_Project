@@ -1,18 +1,17 @@
-package Base_URL;
+package Tests.HW.HW2;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeMethod;
 
-public class GoRestBaseUrl {
+public class FakeStoreBaseUrl {
     protected RequestSpecification spec;
 
-    @BeforeMethod//Before each test method, this will work and initialize the spec object.
+    @BeforeMethod
     public void setSpec() {
         spec = new RequestSpecBuilder()
-                .setBaseUri("https://gorest.co.in/public/v2")
-                .addHeader("Authorization", "Bearer 4f57d920fef93558b0a0c66098da3b201338577ec95e4722be7e63989bd97474")
+                .setBaseUri("https://fakestoreapi.com")
                 .setContentType(ContentType.JSON)
                 .build();
     }

@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class ObjectMapperUtils {
+
     //Reusable method to convert string json to java object
     public static <T> T convertJsonToJava(String json, Class<T> cls) {//Generic Method
         try {
@@ -41,6 +42,11 @@ public class ObjectMapperUtils {
     }
 
     public static void updateJsonNode(JsonNode payload, String fieldName, double value) {
+        ObjectNode objectNode = (ObjectNode) payload;
+        objectNode.put(fieldName, value);
+    }
+
+    public static void updateJsonNode(JsonNode payload, String fieldName, boolean value) {
         ObjectNode objectNode = (ObjectNode) payload;
         objectNode.put(fieldName, value);
     }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="GoRest CRUD Suite">
+    <test name="gorest_crud" preserve-order="true">
+        <classes>
+            <class name="Tests.Mentoring_Practices.booker_crud_Auth.Task01.x.R01_GetAllUsers"/>
+            <class name="Tests.Mentoring_Practices.booker_crud_Auth.Task01.x.R02_CreateUser"/>
+            <class name="Tests.Mentoring_Practices.booker_crud_Auth.Task01.x.R03_GetUser"/>
+            <class name="Tests.Mentoring_Practices.booker_crud_Auth.Task01.x.R04_UpdateUser"/>
+            <class name="Tests.Mentoring_Practices.booker_crud_Auth.Task01.x.R05_PartialUpdateUser"/>
+            <class name="Tests.Mentoring_Practices.booker_crud_Auth.Task01.x.R06_DeleteUser"/>
+            <class name="Tests.Mentoring_Practices.booker_crud_Auth.Task01.x.R07_GetUserNegative"/>
+        </classes>
+    </test>
+</suite>
